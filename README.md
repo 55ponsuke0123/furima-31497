@@ -1,24 +1,105 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##  users テーブル
+| Column     | Type       | Options       |
+| ---------- | ---------- | ------------- |
+| email      | string     | null: false   |
+| password   | string     | null: false   |
+| nickname   | string     | null: false   |
 
-Things you may want to cover:
 
-* Ruby version
+### Association
+has_many :sold_item
+has_many :for_sale_item
+has_many :purchased_item
+has_one :profile
 
-* System dependencies
+##  profiles テーブル
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| family_name        | string     | null: false                    |
+| first_name         | string     | null: false                    |
+| shipping_address   | string     | null: false                    |
+| credit_card_number | integer    | null: false                    |
+| credit_card_limit  | integer    | null: false                    |
+| security_cord      | integer    | null: false                    |
+| user_id            | references | null: false, foreign_key: true |
 
-* Configuration
+### Association
+belongs_to :user
 
-* Database creation
 
-* Database initialization
+## sold_items テーブル
+| Column    | Type         | Options                        |
+| --------- | ----------   | ------------------------------ |
+| title     | string       | null: false                    |
+| state     | text         | null: false                    |
+| category  | text         | null: false                    |
+| image     | ActiveStrage | null: false                    |
+| price     | integer      | null: false                    |
+| detail    | text         | null: false                    |
+| user_id   | references   | null: false, foreign_key: true |
 
-* How to run the test suite
+### Association
+belongs_to :user
+has_one :state
+has_one :category
 
-* Services (job queues, cache servers, search engines, etc.)
+## for_sale_items テーブル
+| Column    | Type         | Options                        |
+| --------- | ----------   | ------------------------------ |
+| title     | string       | null: false                    |
+| state     | text         | null: false                    |
+| category  | text         | null: false                    |
+| image     | ActiveStrage | null: false                    |
+| price     | integer      | null: false                    |
+| detail    | text         | null: false                    |
+| user_id   | references   | null: false, foreign_key: true |
 
-* Deployment instructions
+### Association
+belongs_to :user
+has_one :state
+has_one :category
 
-* ...
+## purchased_items テーブル
+
+| Column    | Type         | Options                        |
+| --------- | ----------   | ------------------------------ |
+| title     | string       | null: false                    |
+| state     | text         | null: false                    |
+| category  | text         | null: false                    |
+| image     | ActiveStrage | null: false                    |
+| price     | integer      | null: false                    |
+| detail    | text         | null: false                    |
+| user_id   | references   | null: false, foreign_key: true |
+
+### Association
+belongs_to :user
+has_one :state
+has_one :category
+
+## states テーブル
+| Column          | Type         | Options                          |
+| --------------  | ----------   | ------------------------------   |
+| sold_item       | references   | null: false, foreign_key: true   |
+| for_sale_item   | references   | null: false, foreign_key: true   |
+| purchased_item  | references   | null: false, foreign_key: true   |
+
+### Association
+belongs_to :sold_item
+belongs_to :for_sale_item
+belongs_to :purchased_item
+
+## categories テーブル
+
+| Column          | Type         | Options                          |
+| --------------  | ----------   | ------------------------------   |
+| sold_item       | references   | null: false, foreign_key: true   |
+| for_sale_item   | references   | null: false, foreign_key: true   |
+| purchased_item  | references   | null: false, foreign_key: true   |
+
+### Association
+belongs_to :sold_item
+belongs_to :for_sale_item
+belongs_to :purchased_item
+
