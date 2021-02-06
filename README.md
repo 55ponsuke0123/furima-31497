@@ -14,7 +14,7 @@
 
 
 ### Association
-has_one :user_details
+has_one :user_detail
 has_many :items
 has_many :purchased_items
 
@@ -37,7 +37,6 @@ belongs_to :user
 ## items テーブル
 | Column           | Type         | Options                        |
 | ---------------- | ------------ | ------------------------------ |  
-| image            | ActiveStrage | null: false                    |
 | title            | string       | null: false                    |
 | description      | text         | null: false                    |
 | category_id      | integer      | null: false                    |
