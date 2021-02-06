@@ -10,28 +10,26 @@
 | first_name_kanji    | string     | null: false                |
 | family_name_kana    | string     | null: false                |
 | first_name_kana     | string     | null: false                |
-| birthday_id         | integer    | null: false                |
-
+| birthday            | date       | null: false                |
 
 ### Association
-has_one :user_detail
 has_many :items
-has_many :purchased_items
 
 
 ##  user_details テーブル
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| postal_code        | integer    | null: false                    |
-| prefectures        | integer    | null: false                    |
+| postal_code        | string     | null: false                    |
+| prefectures_id     | integer    | null: false                    |
 | municipalities     | string     | null: false                    |
 | address            | string     | null: false                    |
-| building_name      | string     | null: false                    |
-| phone_number       | integer    | null: false                    |
+| building_name      | string     |                                |
+| phone_number       | string     | null: false                    |
+| purchased_item     | references | null: false, foreign_key: true |
 
 
 ### Association
-belongs_to :user
+has_one :purchased_item
 
 
 ## items テーブル
@@ -48,7 +46,7 @@ belongs_to :user
 
 ### Association
 belongs_to :user
-has_many :purchased_items
+has_one :purchased_item
 
 ## purchased_items テーブル
 | Column    | Type         | Options                        |
@@ -57,5 +55,5 @@ has_many :purchased_items
 | user      | references   | null: false, foreign_key: true |
 
 ### Association
-belongs_to :user
+belongs_to :user_detail
 belongs_to :item
