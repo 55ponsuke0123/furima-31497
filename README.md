@@ -1,105 +1,62 @@
 # テーブル設計
 
 ##  users テーブル
-| Column     | Type       | Options       |
-| ---------- | ---------- | ------------- |
-| email      | string     | null: false   |
-| password   | string     | null: false   |
-| nickname   | string     | null: false   |
+| Column              | Type       | Options                    |
+| ------------------- | ---------- | -------------------------- |
+| nickname            | string     | null: false                |
+| email               | string     | null: false, unique: true  |
+| encrypted_password  | string     | null: false                |
+| family_name_kanji   | string     | null: false                |
+| first_name_kanji    | string     | null: false                |
+| family_name_kana    | string     | null: false                |
+| first_name_kana     | string     | null: false                |
+| birthday_id         | integer    | null: false                |
 
 
 ### Association
-has_many :sold_item
-has_many :for_sale_item
-has_many :purchased_item
-has_one :profile
+has_one :user_details
+has_many :items
+has_many :purchased_items
 
-##  profiles テーブル
+
+##  user_details テーブル
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| family_name        | string     | null: false                    |
-| first_name         | string     | null: false                    |
-| shipping_address   | string     | null: false                    |
-| credit_card_number | integer    | null: false                    |
-| credit_card_limit  | integer    | null: false                    |
-| security_cord      | integer    | null: false                    |
-| user_id            | references | null: false, foreign_key: true |
+| postal_code        | integer    | null: false                    |
+| prefectures        | integer    | null: false                    |
+| municipalities     | string     | null: false                    |
+| address            | string     | null: false                    |
+| building_name      | string     | null: false                    |
+| phone_number       | integer    | null: false                    |
+
 
 ### Association
 belongs_to :user
 
 
-## sold_items テーブル
-| Column    | Type         | Options                        |
-| --------- | ----------   | ------------------------------ |
-| title     | string       | null: false                    |
-| state     | text         | null: false                    |
-| category  | text         | null: false                    |
-| image     | ActiveStrage | null: false                    |
-| price     | integer      | null: false                    |
-| detail    | text         | null: false                    |
-| user_id   | references   | null: false, foreign_key: true |
+## items テーブル
+| Column           | Type         | Options                        |
+| ---------------- | ------------ | ------------------------------ |  
+| image            | ActiveStrage | null: false                    |
+| title            | string       | null: false                    |
+| description      | text         | null: false                    |
+| category_id      | integer      | null: false                    |
+| state_id         | integer      | null: false                    |
+| delivery_fee_id  | integer      | null: false                    |
+| shipping_area_id | integer      | null: false                    |
+| shipping_days_id | integer      | null: false                    |
+| price            | integer      | null: false                    |
 
 ### Association
 belongs_to :user
-has_one :state
-has_one :category
-
-## for_sale_items テーブル
-| Column    | Type         | Options                        |
-| --------- | ----------   | ------------------------------ |
-| title     | string       | null: false                    |
-| state     | text         | null: false                    |
-| category  | text         | null: false                    |
-| image     | ActiveStrage | null: false                    |
-| price     | integer      | null: false                    |
-| detail    | text         | null: false                    |
-| user_id   | references   | null: false, foreign_key: true |
-
-### Association
-belongs_to :user
-has_one :state
-has_one :category
+has_many :purchased_items
 
 ## purchased_items テーブル
-
 | Column    | Type         | Options                        |
 | --------- | ----------   | ------------------------------ |
-| title     | string       | null: false                    |
-| state     | text         | null: false                    |
-| category  | text         | null: false                    |
-| image     | ActiveStrage | null: false                    |
-| price     | integer      | null: false                    |
-| detail    | text         | null: false                    |
-| user_id   | references   | null: false, foreign_key: true |
+| item      | references   | null: false, foreign_key: true |
+| user      | references   | null: false, foreign_key: true |
 
 ### Association
 belongs_to :user
-has_one :state
-has_one :category
-
-## states テーブル
-| Column          | Type         | Options                          |
-| --------------  | ----------   | ------------------------------   |
-| sold_item       | references   | null: false, foreign_key: true   |
-| for_sale_item   | references   | null: false, foreign_key: true   |
-| purchased_item  | references   | null: false, foreign_key: true   |
-
-### Association
-belongs_to :sold_item
-belongs_to :for_sale_item
-belongs_to :purchased_item
-
-## categories テーブル
-
-| Column          | Type         | Options                          |
-| --------------  | ----------   | ------------------------------   |
-| sold_item       | references   | null: false, foreign_key: true   |
-| for_sale_item   | references   | null: false, foreign_key: true   |
-| purchased_item  | references   | null: false, foreign_key: true   |
-
-### Association
-belongs_to :sold_item
-belongs_to :for_sale_item
-belongs_to :purchased_item
-
+belongs_to :item
