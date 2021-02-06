@@ -1,4 +1,4 @@
-<mxfile host="65bd71144e" modified="2021-02-06T05:23:56.958Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.52.1 Chrome/83.0.4103.122 Electron/9.3.5 Safari/537.36" etag="Ccdc1a9vVBQdCvU95XS-" version="13.10.0" type="embed">
+<mxfile host="65bd71144e" modified="2021-02-06T05:52:04.167Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.52.1 Chrome/83.0.4103.122 Electron/9.3.5 Safari/537.36" etag="ahMWiY-9dFUUjYEOmkqP" version="13.10.0" type="embed">
     <diagram id="DrAgarOty84jmkKuf4Xl" name="ページ1">
         <mxGraphModel dx="728" dy="680" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
@@ -22,7 +22,7 @@
                 <mxCell id="53" value="・image(ActiveStrage)&#10;・title(string型,NOT NULL)&#10;・description(text型,NOT NULL)&#10;・category_id(integer型,NOT NULL)&#10;・state_id(integer型,NOT NULL)&#10;・delivery_fee_id(integer型,NOT NULL)&#10;・prefecture_id(integer型,NOT NULL)&#10;・shipping_days_id(integer型,NOT NULL)&#10;・price(integer型,NOT NULL)&#10;・user＿id(references型)" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="51" vertex="1">
                     <mxGeometry y="26" width="250" height="154" as="geometry"/>
                 </mxCell>
-                <mxCell id="121" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.677;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=ERone;startFill=0;endArrow=ERone;endFill=0;" edge="1" parent="1" source="95" target="3">
+                <mxCell id="121" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.677;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;" edge="1" parent="1" source="95" target="3">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="218" y="220"/>
