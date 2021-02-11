@@ -9,7 +9,7 @@ class User < ApplicationRecord
          validates :email, 
          uniqueness: true
          validates :encrypted_password,
-         presence: true
+         presence: true, length: { minimum: 6 }
          VALID_FAMILY_NAME_KANJI_REGEX = /\A[ぁ-んァ-ン一-龥]/
          validates :family_name_kanji, 
          format: { with: VALID_FAMILY_NAME_KANJI_REGEX},
