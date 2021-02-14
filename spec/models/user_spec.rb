@@ -129,6 +129,16 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("First name kana is invalid")
       end
+      it '名字のフリガナが半角では登録できない' do
+        @user.family_name_kana = "ｶﾅ"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Family name kana is invalid")
+      end
+      it '名前のフリガナが半角では登録できない' do
+        @user.first_name_kana = "ｶﾅ"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kana is invalid")
+      end
       it '生年月日が空だと登録できない' do
         @user.birthday = ''
         @user.valid?
