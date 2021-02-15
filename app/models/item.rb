@@ -11,6 +11,8 @@ class Item < ApplicationRecord
     validates :delivery_fee_id
     validates :prefecture_id
     validates :shipping_days_id
-    validates :price
-  end          
+    validates :image
+  end
+  VALID_PRICE_REGEX = /\A[0-9]+\z/.freeze    
+  validates :price, presence: true, inclusion: { in: (300..9999999)}, format: { with: VALID_PRICE_REGEX }   
 end
