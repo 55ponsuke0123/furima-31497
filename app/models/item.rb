@@ -8,7 +8,7 @@ class Item < ApplicationRecord
     validates :description
     validates :image
   end
-  with_options presence: true, numericality: { other_than: 1 } do
+  with_options presence: true, numericality: { other_than: 0 } do
     validates :category_id
     validates :state_id
     validates :delivery_fee_id

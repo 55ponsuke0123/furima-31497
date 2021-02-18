@@ -1,5 +1,6 @@
 require 'rails_helper'
 RSpec.describe User, type: :model do
+  describe '#create' do
   before do
     @user = FactoryBot.build(:user)
   end
@@ -31,6 +32,7 @@ RSpec.describe User, type: :model do
         expect(@user).to be_valid
       end
     end
+
 
     context '新規登録がうまくいかない時' do
       it 'nicknameが空だと登録できない' do
@@ -146,4 +148,5 @@ RSpec.describe User, type: :model do
       end
     end
   end
+end
 end
