@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
   
   def index
     @items = Item.includes(:user).order(created_at: :desc) 
-    @item = Item.find_by(params[:user_id])
   end
 
 
