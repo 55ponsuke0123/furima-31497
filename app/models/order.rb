@@ -1,5 +1,6 @@
-class UserDetail < ApplicationRecord
-  belongs_to :purchased_item
+class Order
+  include ActiveModel::Model
+  attr_accessor :postal_code, :prefecture_id, :municipalities, :address, :building_name, :phone_number 
 
   with_options presence: true do
     validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/ }
@@ -13,3 +14,9 @@ class UserDetail < ApplicationRecord
 
      validates :prefecture_id, numericality: { other_than: 0 }
 end
+
+
+      
+
+      
+
