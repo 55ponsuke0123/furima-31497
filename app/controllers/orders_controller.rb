@@ -1,20 +1,23 @@
 class OrdersController < ApplicationController
 
   def index
-    @orders = UserDetail.includes(:purchased_item)
+    @item = Item.find(params[:item_id])
+    @purchased_item = UserPurchased.new
   end
 
+
   def create
-    @order = Order.new(purchase_params)
-    if @order.valid?
-      @order.save
-      redirect_to root_path
+    @purchased_item = UserPurchased.new(purchase_params)
+    if @purchased_item.valid?
+      @purchased_item.save
+      redirect_to action: :index
     end
   end
 
   private
 
   def purchase_params
-    params.require(:order).permit(:postal_code, :prefecture_id, :municipalities, :address, :building_name, :phone_number, :purchased_item_id, :user_id, :item_id)
+    params.permit(:postal_code, :prefecture_id, :municipalities, :address, :building_name, :phone_number, :user_id, :item_id).merge(user_id: current_user.id)
   end
+
 end

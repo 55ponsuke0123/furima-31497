@@ -41,7 +41,6 @@ belongs_to :purchased_item
 | category_id      | integer      | null: false                    |
 | state_id         | integer      | null: false                    |
 | delivery_fee_id  | integer      | null: false                    |
-| prefecture_id    | integer      | null: false                    |
 | shipping_days_id | integer      | null: false                    |
 | price            | integer      | null: false                    |
 | user             | references   | null: false, foreign_key: true |
