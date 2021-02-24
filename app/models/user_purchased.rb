@@ -9,17 +9,12 @@ class UserPurchased
     validates :phone_number, format: { with: /\A\d{10,11}\z/ }
   end
 
-  with_options presence: true do
-    validates :user_id
-    validates :item_id
-  end
-
 
      validates :prefecture_id, numericality: { other_than: 0 }
 
      def save
-       purchased_item = PurchasedItem.create(user_id: user_id, item_id: item_id)
-       UserDetail.create(postal_code: postal_code, prefecture_id: prefecture_id, municipalities: municipalities, address: address, building_name: building_name, phone_number: phone_number, purchased_item_id: purchased_item_id)
+      purchased_item = PurchasedItem.create(user_id: user_id, item_id: item_id)
+      UserDetail.create(postal_code: postal_code, prefecture_id: prefecture_id, municipalities: municipalities, address: address, building_name: building_name, phone_number: phone_number, purchased_item_id: purchased_item.id)
      end
 end
 
