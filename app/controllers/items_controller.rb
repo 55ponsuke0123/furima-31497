@@ -4,8 +4,10 @@ class ItemsController < ApplicationController
   before_action :move_to_index, only: [:edit, :update, :destroy]
 
 
+
   def index
     @items = Item.includes(:user).order(created_at: :desc) 
+    @purchased_item = PurchasedItem.includes(:user)
   end
 
 
@@ -23,7 +25,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    
   end
 
   def edit
@@ -58,5 +59,7 @@ class ItemsController < ApplicationController
       redirect_to action: :index
     end
   end
+
+  
   
 end
