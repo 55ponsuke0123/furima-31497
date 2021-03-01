@@ -4,6 +4,7 @@ RSpec.describe UserPurchased, type: :model do
   describe '#create' do
     before do
       @user_purchased = FactoryBot.build(:user_purchased)
+      sleep 0.1 
     end
 
     describe '顧客情報入力' do
