@@ -35,13 +35,15 @@ class ItemsController < ApplicationController
   def update
        if @item.update(item_params)
         redirect_to item_path
+       elsif @item.purchased_item.present?
+        redirect_to root_path
        else
        render :edit
        end
   end
 
   def destroy
-    if @item.destroy
+    if @item.destroy || @item.purchased_item.present?
       redirect_to root_path
     end
   end
