@@ -7,7 +7,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.includes(:user).order(created_at: :desc) 
-    @purchased_item = PurchasedItem.includes(:user)
   end
 
 
@@ -28,6 +27,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if @item.purchased_item.present?
+      redirect_to root_path
+    end
   end
 
   def update
