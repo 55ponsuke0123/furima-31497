@@ -1,8 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :new, :create]
   before_action :set_item, only: [:index, :create]
-  before_action :move_to_index, only: [:edit, :update, :destroy]
-
+  
 
   require 'payjp'
 
@@ -47,10 +46,6 @@ class OrdersController < ApplicationController
     )
   end
 
-  def move_to_index
-    unless @item.user_id == current_user.id
-      redirect_to action: :index
-    end
-  end
+  
   
 end
