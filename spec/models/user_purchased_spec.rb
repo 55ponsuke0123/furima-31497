@@ -6,9 +6,18 @@ RSpec.describe UserPurchased, type: :model do
       @user_purchased = FactoryBot.build(:user_purchased)
     end
 
+    describe '顧客情報入力' do
+      context '顧客情報入力がうまくいく時' do
     it 'すべての値が正しく入力されていれば保存できること' do
       expect(@user_purchased).to be_valid
     end
+    it 'building_nameは空でも保存できること' do
+      @user_purchased.building_name = ''
+      expect(@user_purchased).to be_valid
+    end
+  end
+
+  context '顧客情報入力がうまくいかない時' do
     it 'postal_codeが空だと保存できないこと' do
       @user_purchased.postal_code = ''
       @user_purchased.valid?
@@ -39,10 +48,6 @@ RSpec.describe UserPurchased, type: :model do
       @user_purchased.valid?
       expect(@user_purchased.errors.full_messages).to include "Address can't be blank"
     end
-    it 'building_nameは空でも保存できること' do
-      @user_purchased.building_name = ''
-      expect(@user_purchased).to be_valid
-    end
     it 'phone_numberが空だと保存できないこと' do
       @user_purchased.phone_number = ''
       @user_purchased.valid?
@@ -63,5 +68,17 @@ RSpec.describe UserPurchased, type: :model do
       @user_purchased.valid?
       expect(@user_purchased.errors.full_messages).to include "Token can't be blank"
     end
+    it 'user_idが空だと保存できないこと' do
+      @user_purchased.user_id = ''
+      @user_purchased.valid?
+      expect(@user_purchased.errors.full_messages).to include "User can't be blank"
+    end
+    it 'item_idが空だと保存できないこと' do
+      @user_purchased.item_id = ''
+      @user_purchased.valid?
+      expect(@user_purchased.errors.full_messages).to include "Item can't be blank"
+    end
+   end
   end
+ end
 end
