@@ -1,14 +1,15 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :new, :create]
-  before_action :sold_out_item, only: [:index]
-  #before_action :move_to_index, only: [:index, :new, :create]
+  
 
   require 'payjp'
 
   def index
     @item = Item.find(params[:item_id])
     @user_purchased = UserPurchased.new
-    @purchased_item = PurchasedItem.find(params[:purchased_item_id])
+    if @item.user == current_user || @item.purchased_item.present?
+      redirect_to root_path
+    end
   end
 
   def new
@@ -29,11 +30,6 @@ class OrdersController < ApplicationController
 
   
   private
-  def sold_out_item
-    if @item == @purchased_item
-      redirect_to root_path
-    end
-  end
   
   def purchased_params
     params.require(:user_purchased).permit(:postal_code, :prefecture_id, :municipalities, :address, :building_name, :phone_number, :purchased_item_id, :user_id, :item_id, :token).merge(purchased_item_id: params[:purchased_item_id], item_id: params[:item_id], user_id: current_user.id, token: params[:token])
@@ -49,11 +45,8 @@ class OrdersController < ApplicationController
   end
 
   
-  #def move_to_index
-    #if @item.user_id == current_user.id
-      #redirect_to action: :index
-    #end
-  #end
-  
 
+
+  
+  
 end
