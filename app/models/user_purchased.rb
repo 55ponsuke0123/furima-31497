@@ -10,7 +10,6 @@ class UserPurchased
     validates :token
     validates :user_id
     validates :item_id
-    validates :purchased_item_id
   end
 
 
